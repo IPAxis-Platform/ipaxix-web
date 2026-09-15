@@ -134,8 +134,8 @@
   .toolcard span{font-size:13.5px;color:var(--ink-soft);flex:1}
   .toolcard .go{margin-top:14px;font-size:12.5px;font-weight:600;color:var(--teal)}
 
-  .who{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:38px}
-  @media(max-width:720px){.who{grid-template-columns:1fr}}
+  .who{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+  @media(max-width:900px){.who{grid-template-columns:1fr}}
   .whobox{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;box-shadow:var(--sh-sm)}
   .whobox .tag{font-family:"IBM Plex Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--teal)}
   .whobox h3{font-weight:600;font-size:20px;margin:9px 0 8px}
@@ -215,7 +215,7 @@
         <a href="#pricing">Pricing</a>
         <a href="/blog/">Blog</a>
         <a href="#who">Who it's for</a>
-        <a class="btn primary" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a walkthrough</a>
+        <a class="btn primary" href="https://patent-platform.vercel.app/?trial=1" target="_blank" rel="noopener">Start free trial</a>
       </div>
     </nav>
 
@@ -225,8 +225,8 @@
         <h1>Your patents, <em>never a missed deadline.</em></h1>
         <p class="sub">IP Axix sets itself up from nothing but your patent numbers — pulling your US and European cases live from the patent offices, calculating every deadline, and reminding you before anything can lapse. No docketing department. No data-entry project.</p>
         <div class="hcta">
-          <a class="btn primary" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a 20-min walkthrough</a>
-          <a class="btn ghost" href="https://audit.ipaxix.online">Try the free tools →</a>
+          <a class="btn primary" href="https://patent-platform.vercel.app/?trial=1" target="_blank" rel="noopener">Start free — 3 patents, 30 days</a>
+          <a class="btn ghost" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a 20-min walkthrough</a>
         </div>
         <div class="hnote">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
@@ -275,6 +275,13 @@
     <a class="toolcard" href="https://audit.ipaxix.online/grade"><span class="k">Strength</span><b>Patent strength grade</b><span>An A–F grade from citations and remaining term.</span><div class="go">Grade my patents →</div></a>
     <a class="toolcard" href="https://audit.ipaxix.online/expiry"><span class="k">Term</span><b>Patent expiry calculator</b><span>Estimated expiry date and how much term is left.</span><div class="go">Calculate expiry →</div></a>
   </div>
+  <div style="margin-top:34px;background:linear-gradient(135deg,#0e8f80,#0b6f63);border-radius:18px;padding:28px 30px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 20px 44px -20px rgba(14,143,128,.6)">
+    <div style="color:#eafaf6;max-width:60ch">
+      <div style="font-family:'Fraunces',serif;font-size:23px;font-weight:600;color:#fff;line-height:1.2">Ready to <em style="font-style:italic;color:#a9f0e4">manage</em> them, not just check them?</div>
+      <div style="font-size:14.5px;margin-top:8px;line-height:1.55">Put your own patents on the board — every US &amp; European deadline watched, prosecution, docketing and actions, all features unlocked. Free for 30 days, up to 3 patents. Setup is just the patent numbers.</div>
+    </div>
+    <a class="btn primary" style="white-space:nowrap;background:#fff;color:#0b6f63;border-color:#fff" href="https://patent-platform.vercel.app/?trial=1" target="_blank" rel="noopener">Start your free trial →</a>
+  </div>
 </div></section>
 
 <!-- ===== VALUE ===== -->
@@ -308,10 +315,12 @@
 <section class="sec" id="who" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="in">
   <div class="band"><span class="eyebrow">Who it's for</span><h2>Built for the people who own the deadlines</h2></div>
   <div class="who">
-    <div class="whobox"><span class="tag">In-house IP teams</span><h3>Your own cockpit</h3>
-      <p>A one-to-five person team running a global portfolio on spreadsheets and outside-counsel email gets a single source of truth — every US and EP case, every date, one screen.</p></div>
-    <div class="whobox"><span class="tag">Firms &amp; patent agents</span><h3>A portal for every client</h3>
-      <p>Run many clients' portfolios behind separate logins and give each a branded view of their deadlines and status — docketing depth without the docketing overhead.</p></div>
+    <div class="whobox"><span class="tag">Individual</span><h3>Your whole portfolio</h3>
+      <p>A single owner or inventor gets every US and European deadline calculated and watched, under one login, with nothing to install. Start free — up to 3 patents for 30 days.</p></div>
+    <div class="whobox"><span class="tag">Corporate</span><h3>Your team's cockpit</h3>
+      <p>An in-house team sees the entire portfolio consolidated, allocates patents to attorneys so each sees only theirs, and never misses a date across multiple attorneys.</p></div>
+    <div class="whobox"><span class="tag">Practice</span><h3>A portal for every client</h3>
+      <p>A firm runs many clients' portfolios behind separate logins and gives each a live view of their own deadlines and status — docketing depth without the overhead.</p></div>
   </div>
 </div></section>
 
@@ -322,19 +331,19 @@
     <p class="lede">Representative examples of the workflows IP Axix is built for — from a two-founder startup to a firm running dozens of clients.</p></div>
   <div class="cases">
     <div class="case">
-      <span class="tag">In-house IP team</span>
+      <span class="tag">Corporate · in-house IP team</span>
       <h3>Three people, four firms, 180 patents</h3>
       <p class="sit">A global electronics group runs its US and European portfolio through four different outside firms. Every deadline lives in a different attorney's docket and a shared spreadsheet that's always slightly out of date — and the team only hears about a response deadline when an email lands.</p>
       <p class="out"><b>With IP Axix</b> one board shows every deadline across all four firms, pulled straight from the USPTO and EPO. The team sees what's due before any attorney emails, nothing slips through the gap between firms, and when an examiner acts the response deadline appears the same day.</p>
     </div>
     <div class="case">
-      <span class="tag">Firm &amp; agents</span>
+      <span class="tag">Practice · firm &amp; agents</span>
       <h3>One boutique firm, 25 clients</h3>
       <p class="sit">A patent firm dockets hundreds of cases across 25 clients by hand, and spends the week answering "what's coming up on our portfolio?" emails — each one a manual look-up across systems.</p>
       <p class="out"><b>With IP Axix</b> every client gets a separate login and a branded portal showing only their deadlines and status, while the firm runs everything from one dashboard. Clients answer their own "what's next" — the firm gets docketing depth without the docketing hours, and a service clients can see.</p>
     </div>
     <div class="case">
-      <span class="tag">Startup &amp; solo</span>
+      <span class="tag">Individual · owner &amp; startup</span>
       <h3>Two founders, 12 patents</h3>
       <p class="sit">A deep-tech startup has filed 12 patents across the US and EP. Nobody owns docketing; the next renewal is a reminder someone hopes they remembered to set, and the founders have no idea what maintenance will cost down the line.</p>
       <p class="out"><b>With IP Axix</b> they paste the numbers and the whole board builds itself in minutes. A monthly reminder covers every date, and the cost forecast shows exactly what US and European upkeep will cost over the coming years — a number they can put straight into the budget.</p>
@@ -344,50 +353,50 @@
 
 <!-- ===== PRICING ===== -->
 <section class="sec" id="pricing"><div class="in">
-  <div class="band"><span class="eyebrow">Pricing</span>
-    <h2>Plans that fit your portfolio</h2>
-    <p class="lede">Every plan is set up with you on a short walkthrough — no credit card to start, no data-entry project. The free tools stay free, forever.</p></div>
+  <div class="band"><span class="eyebrow">Plans</span>
+    <h2>Three ways to run a patent portfolio</h2>
+    <p class="lede">Pick the one that matches your team — everything else works the same. Setup is just your patent numbers: paste them in and IP Axix pulls every case live from the USPTO and EPO. No data-entry project, no migration.</p></div>
   <div class="pricing">
     <div class="tier">
-      <div class="tname">Solo</div>
+      <div class="tname">Individual</div>
       <div class="price">$29<small>/mo</small></div>
-      <div class="for">For independent inventors and early-stage startups.</div>
+      <div class="for">For a single owner or inventor managing their own patents.</div>
       <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Up to 10 patents · 1 user</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>US &amp; European deadlines</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Reminders before every date</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Renewal-cost forecast</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Your whole portfolio under one login</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Every US &amp; European deadline, watched for you</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Prosecution history, docket &amp; actions</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Renewal-cost forecast, year by year</li>
       </ul>
-      <a class="btn line" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a walkthrough</a>
+      <a class="btn primary" href="https://patent-platform.vercel.app/" target="_blank" rel="noopener">Start free — 3 patents, 30 days</a>
     </div>
     <div class="tier feat">
       <div class="badge">Most popular</div>
-      <div class="tname">Team</div>
+      <div class="tname">Corporate</div>
       <div class="price">$199<small>/mo</small></div>
-      <div class="for">For in-house IP teams running a global portfolio.</div>
+      <div class="for">For an in-house IP team working across several attorneys.</div>
       <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Up to 200 patents · up to 5 users</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Every deadline across all your firms</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Portfolio intelligence &amp; strength grades</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Email reports &amp; status packs</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>You see the entire portfolio, consolidated</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Allocate patents to attorneys — each sees only theirs</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>One board for every deadline, across every attorney</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Portfolio intelligence &amp; email status packs</li>
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Priority support</li>
       </ul>
       <a class="btn primary" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a walkthrough</a>
     </div>
     <div class="tier">
-      <div class="tname">Firm</div>
+      <div class="tname">Practice</div>
       <div class="price">Custom</div>
-      <div class="for">For patent firms &amp; agents managing many clients.</div>
+      <div class="for">For a law firm or agent managing multiple clients.</div>
       <ul>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Unlimited patents &amp; clients</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Separate login per client</li>
-        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Branded client portals</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>One login — switch between every client's portfolio</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Each client sees only their own, with a live deadline view</li>
+        <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Renewal-cost forecast per client</li>
         <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Dedicated onboarding</li>
       </ul>
       <a class="btn line" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Talk to us</a>
     </div>
   </div>
-  <p class="pricenote">Every plan includes the free tools, live US &amp; EP data, and reminders before each deadline. Save two months when billed annually · no card to start · cancel anytime.</p>
+  <p class="pricenote">Every plan includes the free tools, live US &amp; EP data, and reminders before each deadline. Setup is just patent numbers — no migration. No card to start · cancel anytime.</p>
 </div></section>
 
 <!-- ===== FAQ ===== -->
@@ -407,10 +416,10 @@
   <div class="close">
     <span class="eyebrow">Get started</span>
     <h2>Start with your own portfolio.</h2>
-    <p>Run a free tool on your patents right now — no signup. When you're ready for the full platform, book a 20-minute walkthrough and we'll set it up with you.</p>
+    <p>Put your patents on the board free for 30 days — full access, up to 3 patents, no card. Setup is just the patent numbers. Prefer a guided start? Book a 20-minute walkthrough and we'll set it up with you.</p>
     <div class="btns">
-      <a class="btn primary" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a 20-min walkthrough</a>
-      <a class="btn ghost" href="https://audit.ipaxix.online">Try the free tools</a>
+      <a class="btn primary" href="https://patent-platform.vercel.app/?trial=1" target="_blank" rel="noopener">Start free — 3 patents, 30 days</a>
+      <a class="btn ghost" href="https://cal.com/ipaxix/20min" target="_blank" rel="noopener">Book a 20-min walkthrough</a>
     </div>
   </div>
 </div></section>
