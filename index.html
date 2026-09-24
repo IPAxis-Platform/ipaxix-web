@@ -194,6 +194,15 @@
   .case .sit{font-size:13.5px;color:var(--ink-soft);margin:11px 0 0;line-height:1.6}
   .case .out{font-size:13.5px;color:var(--ink);margin:14px 0 0;line-height:1.62;padding-top:14px;border-top:1px solid var(--line-soft)}
   .case .out b{color:var(--teal);font-weight:700}
+  .case .sit b{color:var(--ink);font-weight:700}
+
+  /* problem cards */
+  .probs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+  @media(max-width:900px){.probs{grid-template-columns:1fr}}
+  .probcard{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:14px;padding:24px 22px;box-shadow:var(--sh-sm)}
+  .probcard .pnum{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.12em;color:var(--gold)}
+  .probcard h3{font-family:"Fraunces",serif;font-weight:600;font-size:18px;margin:8px 0 0;letter-spacing:-.01em;line-height:1.25}
+  .probcard p{font-size:13.5px;color:var(--ink-soft);margin:9px 0 0;line-height:1.6}
 </style>
 </head>
 <body>
@@ -264,11 +273,23 @@
   </div>
 </div>
 
+<!-- ===== PROBLEM ===== -->
+<section class="sec" id="problem"><div class="in">
+  <div class="band"><span class="eyebrow">The problem</span>
+    <h2>How a granted patent quietly slips away</h2>
+    <p class="lede">Almost never through a decision — it happens in the ordinary gaps. Where the statutory dates are kept, who is actually watching them, and what the upkeep really costs.</p></div>
+  <div class="probs">
+    <div class="probcard"><div class="pnum">01</div><h3>No one really owns the dates</h3><p>The next renewal is a reminder someone hopes they set. When it lives in a memory or a spreadsheet, one gap is all it takes to lose a patent.</p></div>
+    <div class="probcard"><div class="pnum">02</div><h3>The deadlines are scattered</h3><p>Across attorneys, outside firms, inboxes and spreadsheets — each a step behind the last. Too often you hear about a deadline only when the email lands.</p></div>
+    <div class="probcard"><div class="pnum">03</div><h3>The cost arrives as a surprise</h3><p>What it takes to keep a portfolio alive over the next decade — US maintenance fees, EP renewals — stays invisible until the invoice does.</p></div>
+  </div>
+</div></section>
+
 <!-- ===== VALUE ===== -->
 <section class="sec" id="what" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="in">
-  <div class="band"><span class="eyebrow">What you get</span>
+  <div class="band"><span class="eyebrow">The fix</span>
     <h2>Everything the life of a patent needs — in one place</h2>
-    <p class="lede">Not a spreadsheet with reminders. A live system that reads the patent offices for you, turns what it finds into dates and decisions, and keeps everyone looking at the same picture.</p></div>
+    <p class="lede">Not a spreadsheet with reminders. A live system that closes every one of those gaps — it reads the patent offices for you, turns what it finds into dates and decisions, and keeps everyone looking at the same picture.</p></div>
   <div class="vp">
     <div class="prop"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
       <h3>Every deadline in your tracker — automatically</h3><p>US and European deadlines land in your tracker on their own, pulled live from the USPTO and EPO — office-action responses, issue fees, maintenance fees, EP renewals. Nothing to enter, nothing to remember.</p></div>
@@ -297,42 +318,29 @@
   </div>
 </div></section>
 
-<!-- ===== WHO ===== -->
+<!-- ===== WHO IT'S FOR / IN PRACTICE ===== -->
 <section class="sec" id="who" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="in">
-  <div class="band"><span class="eyebrow">Who it's for</span><h2>Built for the people who own the deadlines</h2></div>
-  <div class="who">
-    <div class="whobox"><span class="tag">Individual</span><h3>Your whole portfolio</h3>
-      <p>A single owner or inventor gets every US and European deadline calculated and watched, under one login, with nothing to install. Start free — up to 3 patents for 30 days.</p></div>
-    <div class="whobox"><span class="tag">Corporate</span><h3>One in-house team, many attorneys</h3>
-      <p>The company sees the entire portfolio in one place, then allocates patents to each attorney so they see only theirs — so nothing slips across multiple attorneys, inside or outside counsel.</p></div>
-    <div class="whobox"><span class="tag">Practice</span><h3>One firm, many clients</h3>
-      <p>Run every client's portfolio behind separate logins and give each client a live view of their own deadlines and status. Docketing depth for the whole book of business, without the overhead.</p></div>
-  </div>
-</div></section>
-
-<!-- ===== CASE STUDIES ===== -->
-<section class="sec" id="cases" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="in">
-  <div class="band"><span class="eyebrow">In practice</span>
-    <h2>How teams put it to work</h2>
-    <p class="lede">The same system, three ways — from a two-founder startup, to an in-house team spread across outside firms, to a practice running dozens of clients.</p></div>
+  <div class="band"><span class="eyebrow">Who it's for</span>
+    <h2>Find yourself here</h2>
+    <p class="lede">The same system, three ways to run it. Each starts from a real problem — and changes the day it's on the board.</p></div>
   <div class="cases">
     <div class="case">
       <span class="tag">Startup / Small firm · owner-led</span>
       <h3>25 patents, no docketing team</h3>
-      <p class="sit">A deep-tech startup filed 25 patents across the US and EP. Nobody owns the dates — the next renewal is a reminder someone hopes they set, and no one knows what upkeep will cost down the line.</p>
-      <p class="out"><b>With IP Axix,</b> they paste the numbers and the whole board builds itself in minutes. Every date is watched, and the cost forecast shows exactly what US and European upkeep will run — a number that goes straight into the budget.</p>
+      <p class="sit"><b>The problem —</b> a deep-tech startup holds 25 patents across the US and EP, and no one whose job is the dates. The next renewal rides on someone remembering, and no one can say what the next ten years of upkeep will cost.</p>
+      <p class="out"><b>What changes —</b> every US and European date is watched automatically, and a year-by-year forecast turns upkeep into a budgeted number. Nothing rides on memory, and no renewal is ever a surprise.</p>
     </div>
     <div class="case">
       <span class="tag">Corporate · in-house IP team</span>
       <h3>3,000+ patents, every firm, one board</h3>
-      <p class="sit">A global electronics group runs a 3,000+ patent US and European portfolio through several outside firms. Every deadline lives in a different attorney's docket and a spreadsheet that's always behind — and the team only hears about a deadline when an email lands.</p>
-      <p class="out"><b>With IP Axix,</b> one board shows every deadline across every firm, pulled straight from the offices. The team sees what's due before any attorney emails, nothing slips between firms, and when an examiner acts the response deadline appears the same day.</p>
+      <p class="sit"><b>The problem —</b> a global electronics group runs a 3,000+ patent portfolio through several outside firms. Every deadline sits in a different attorney's docket and a spreadsheet that's always a step behind — the team learns of a date when an email lands, not before.</p>
+      <p class="out"><b>What changes —</b> one board shows every deadline across every firm, straight from the offices. The team sees what's due before any attorney emails, and nothing slips in the gaps between firms.</p>
     </div>
     <div class="case">
       <span class="tag">Practice · firm &amp; agents</span>
       <h3>100+ clients, each in their own portal</h3>
-      <p class="sit">A firm dockets thousands of cases across 100+ clients by hand, and spends the week answering "what's coming up on our matters?" — each one a manual look-up.</p>
-      <p class="out"><b>With IP Axix,</b> every client gets their own login and a portal showing only their deadlines, while the firm runs everything from one dashboard. Clients answer their own "what's next," and the firm gets docketing depth without the docketing hours.</p>
+      <p class="sit"><b>The problem —</b> a firm dockets thousands of cases for 100+ clients by hand, and loses hours every week to "what's coming up on our matters?" — one manual look-up at a time.</p>
+      <p class="out"><b>What changes —</b> every client gets a portal that answers their own "what's next," while the firm runs it all from one dashboard. Docketing depth for the whole book of business, without the docketing hours.</p>
     </div>
   </div>
 </div></section>
