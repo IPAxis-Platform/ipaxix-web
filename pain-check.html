@@ -3,22 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Free Portfolio Audit — IP Axix</title>
-<meta name="description" content="A free 3-minute portfolio pain check. Answer 7 quick questions and get a free deadline-exposure snapshot of up to 20 patents.">
+<title>Free Deadline Report — IP Axix</title>
+<meta name="description" content="Take a 3-minute portfolio pain check, enter your patent numbers, and our specialists will email you a free report of every upcoming deadline.">
 <meta name="robots" content="index, follow">
-<meta property="og:title" content="Free Portfolio Audit — IP Axix">
-<meta property="og:description" content="3-minute portfolio pain check. Get a free deadline-exposure snapshot for up to 20 patents.">
+<meta property="og:title" content="Free Deadline Report — IP Axix">
+<meta property="og:description" content="A 3-minute check, then a free report of every upcoming deadline on your patents — reviewed by our team before it reaches you.">
 <meta property="og:type" content="website">
 <link rel="icon" href="/ipaxix-mark.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600;8..60,700&display=swap">
 <style>
   :root{
     --bg:#eef1f5; --card:#ffffff; --ink:#16273d; --ink-soft:#4a5a6f;
     --muted:#7c8798; --line:#dfe4ea; --line-soft:#eaeef3;
     --accent:#1f5f8b; --accent-wash:#e8f0f6;
     --gold:#a8791f; --gold-wash:#fbf4e6; --good:#1f7a54; --good-wash:#e6f2ec;
+    --alert:#b0453a; --alert-wash:#fbecea;
     --shadow:0 18px 48px rgba(20,39,61,.14),0 2px 8px rgba(20,39,61,.06);
     color-scheme:light;
   }
@@ -27,6 +28,7 @@
     --muted:#8391a2; --line:#26323f; --line-soft:#1d2833;
     --accent:#5aa6d6; --accent-wash:#16283a;
     --gold:#d9b465; --gold-wash:#2a2416; --good:#5cc292; --good-wash:#12271e;
+    --alert:#e8887c; --alert-wash:#2a1714;
     --shadow:0 18px 48px rgba(0,0,0,.5); color-scheme:dark;
   }}
   :root[data-theme="dark"]{
@@ -34,6 +36,7 @@
     --muted:#8391a2; --line:#26323f; --line-soft:#1d2833;
     --accent:#5aa6d6; --accent-wash:#16283a;
     --gold:#d9b465; --gold-wash:#2a2416; --good:#5cc292; --good-wash:#12271e;
+    --alert:#e8887c; --alert-wash:#2a1714;
     --shadow:0 18px 48px rgba(0,0,0,.5); color-scheme:dark;
   }
   *{box-sizing:border-box}
@@ -54,14 +57,15 @@
     box-shadow:var(--shadow);padding:26px 24px;flex:1;display:flex;flex-direction:column}
   @media(min-width:480px){.card{padding:32px 30px}}
   .bar{height:6px;background:var(--line-soft);border-radius:99px;overflow:hidden;margin-bottom:6px}
-  .bar>i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .35s cubic-bezier(.4,0,.2,1);width:0}
+  .bar>i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .4s cubic-bezier(.4,0,.2,1);width:0}
   .step{font-size:11.5px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-bottom:22px}
+  .eyebrow{font-size:11.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
   h1{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:30px;line-height:1.15;
     letter-spacing:-.01em;text-wrap:balance;margin:0 0 12px}
   .q{font-family:"Source Serif 4",Georgia,serif;font-weight:600;font-size:23px;line-height:1.22;
     text-wrap:balance;margin:0 0 4px}
   .hint{color:var(--ink-soft);font-size:14px;margin:0 0 20px}
-  .lede{color:var(--ink-soft);font-size:15.5px;margin:0 0 26px;max-width:46ch}
+  .lede{color:var(--ink-soft);font-size:15.5px;margin:0 0 24px;max-width:47ch}
   .opts{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
   .opt{display:flex;align-items:center;gap:13px;width:100%;text-align:left;cursor:pointer;
     background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:15px 16px;
@@ -74,11 +78,23 @@
   .opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-wash)}
   .opt[aria-checked="true"] .tick{border-color:var(--accent);background:var(--accent)}
   .opt[aria-checked="true"] .tick::after{content:"";width:9px;height:9px;border-radius:inherit;background:#fff}
+  /* insight interstitial */
+  .insight{border-left:4px solid var(--accent);background:var(--accent-wash);border-radius:0 14px 14px 0;
+    padding:22px 22px 24px;margin:4px 0 8px;animation:rise .4s cubic-bezier(.2,.7,.2,1)}
+  .insight.warn{border-left-color:var(--gold);background:var(--gold-wash)}
+  .insight.alert{border-left-color:var(--alert);background:var(--alert-wash)}
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.insight{animation:none}.bar>i{transition:none}}
+  .insight .ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;color:#fff;background:var(--accent);margin-bottom:14px}
+  .insight.warn .ic{background:var(--gold)} .insight.alert .ic{background:var(--alert)}
+  .insight .big{font-family:"Source Serif 4",Georgia,serif;font-weight:700;font-size:21px;line-height:1.24;text-wrap:balance;margin:0 0 8px}
+  .insight p{margin:0;color:var(--ink-soft);font-size:15px;line-height:1.55}
   .field{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
   .field label{font-size:13px;font-weight:600;color:var(--ink-soft)}
-  .field input{font:inherit;font-size:15.5px;padding:12px 14px;border:1.5px solid var(--line);
-    border-radius:11px;background:var(--card);color:var(--ink)}
-  .field input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
+  .field input,.field textarea{font:inherit;font-size:15.5px;padding:12px 14px;border:1.5px solid var(--line);
+    border-radius:11px;background:var(--card);color:var(--ink);width:100%;resize:vertical}
+  .field textarea{min-height:110px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:14px;line-height:1.7}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-wash)}
   .foot{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:24px}
   .btn{font:inherit;font-weight:700;font-size:15px;border-radius:11px;padding:13px 22px;cursor:pointer;
     border:1.5px solid transparent;transition:opacity .15s,background .15s,transform .05s}
@@ -93,10 +109,16 @@
   .reward b{color:var(--good);font-size:14px}
   .reward p{margin:2px 0 0;font-size:13.5px;color:var(--ink-soft)}
   .reward .ic{color:var(--good);flex-shrink:0;margin-top:1px}
+  .steps3{display:flex;gap:8px;margin:0 0 22px;flex-wrap:wrap}
+  .steps3 .s{flex:1;min-width:150px;background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 13px}
+  .steps3 .n{font-size:11px;font-weight:800;color:var(--accent);letter-spacing:.03em}
+  .steps3 .t{font-size:13px;font-weight:600;margin-top:3px}
+  .steps3 .d{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.45}
+  .skip{background:none;border:none;color:var(--muted);font:inherit;font-size:13px;cursor:pointer;text-decoration:underline;text-underline-offset:2px;padding:6px 0;margin-top:2px;align-self:flex-start}
   .done{text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:10px 0}
   .done .badge{width:66px;height:66px;border-radius:50%;background:var(--good-wash);color:var(--good);display:grid;place-items:center;margin-bottom:20px}
   .done h1{margin-bottom:8px}
-  .done p{color:var(--ink-soft);font-size:15.5px;max-width:42ch;margin:0 auto 8px}
+  .done p{color:var(--ink-soft);font-size:15.5px;max-width:44ch;margin:0 auto 8px}
   .foot-note{font-size:12px;color:var(--muted);text-align:center;margin-top:16px;padding-bottom:4px}
   .foot-note a{color:var(--muted)}
   .save-state{font-size:12.5px;margin-top:14px;padding:9px 12px;border-radius:9px;display:none}
@@ -109,50 +131,76 @@
 <div class="wrap">
   <a class="brand" href="/">
     <div class="mark">IP</div>
-    <div><b>IP Axix</b><br><span>Portfolio pain check · 3 minutes</span></div>
+    <div><b>IP Axix</b><br><span>Free deadline report · about 3 minutes</span></div>
   </a>
   <div class="card" id="card"></div>
-  <div class="foot-note">Your answers are private and used only to prepare your audit. No spam. · <a href="/">ipaxix.online</a></div>
+  <div class="foot-note">Private and used only to prepare your report. No spam. · <a href="/">ipaxix.online</a></div>
 </div>
 
 <script>
 (function(){
   "use strict";
-  var ENDPOINT="https://ooanilhblskuaasxyimw.supabase.co/functions/v1/survey-response";
+  var ENDPOINT="https://ooanilhblskuaasxyimw.supabase.co/functions/v1/report-request";
   var KEY="sb_publishable_dQBbAXx5l_buD3m-HQieTA_UBQA125h";
 
+  // Journey (SPIN + PAS): situation → problem → implication (emotion) → relief → report.
   var STEPS = [
     { kind:"intro" },
-    { id:"tracking", q:"How do you track patent deadlines today?", type:"single",
-      opts:["Spreadsheets / calendar","A docketing tool","We rely on outside counsel","Nothing formal yet"] },
-    { id:"jurisdictions", q:"Which jurisdictions is your portfolio in?", type:"multi",
+    { id:"tracking", q:"How do you keep track of your patent deadlines today?", type:"single",
+      opts:["A spreadsheet or calendar","A docketing tool","We rely on outside counsel","Nothing formal yet"] },
+    { kind:"insight", from:"tracking" },
+    { id:"jurisdictions", q:"Where is your portfolio protected?", type:"multi",
       opts:["United States","Europe (EP)","India","Other / international"] },
-    { id:"size", q:"Roughly how large is your portfolio?", type:"single",
-      opts:["1–25 patents & applications","26–100","101–500","500+"] },
-    { id:"worry", q:"What worries you most right now?", type:"multi",
-      opts:["Missing a deadline","Too much manual admin","Renewal & maintenance costs","Understanding office actions","What competitors are filing"] },
-    { id:"closecall", q:"Have you ever had a missed or near-missed deadline?", type:"single",
-      opts:["Yes, it's happened","A close call once or twice","Never — but it's a constant worry","Not sure"] },
-    { id:"timespend", q:"How much time each week goes to docketing & prosecution admin?", type:"single",
-      opts:["Under 2 hours","2–5 hours","5+ hours","No idea, but too much"] },
-    { id:"role", q:"Finally — what best describes you?", type:"single",
+    { id:"size", q:"How many patents and applications are you responsible for?", type:"single",
+      opts:["1–25","26–100","101–500","500+"] },
+    { kind:"insight", from:"size" },
+    { id:"worry", q:"When you think about your portfolio, what keeps you up at night?", type:"multi",
+      opts:["Missing a deadline","The manual work never ends","Renewal & maintenance costs","Making sense of office actions","What competitors are filing"] },
+    { id:"closecall", q:"Have you ever had a deadline slip — or come close?", type:"single",
+      opts:["Yes — it's happened","A close call once or twice","Never, but it's a constant worry","I honestly can't be sure"] },
+    { kind:"insight", from:"closecall" },
+    { id:"timespend", q:"How much of your week disappears into docketing & prosecution admin?", type:"single",
+      opts:["Under 2 hours","2–5 hours","5+ hours","Too much to measure"] },
+    { id:"role", q:"Last one — what best describes you?", type:"single",
       opts:["In-house IP / patent manager","Attorney","Paralegal / docketing","Founder / business owner","Other"] },
+    { kind:"relief" },
+    { kind:"patents" },
     { kind:"capture" },
     { kind:"done" }
   ];
 
+  // Answer-aware emotional interstitials.
+  var INSIGHTS = {
+    tracking: {
+      "A spreadsheet or calendar": { tone:"warn", big:"A spreadsheet never sent a reminder.", p:"Nearly every lapsed patent traces back to a manual list someone trusted — until the day a row was missed." },
+      "A docketing tool": { tone:"", big:"A tool helps — but only with what it was told.", p:"Most docketing systems track only the cases someone remembered to enter. The real risk is the patents that never made it in." },
+      "We rely on outside counsel": { tone:"warn", big:"Counsel can miss a date too — and you still carry it.", p:"A renewal notice sent to the wrong inbox, an instruction that slips: the patent is yours, and so is the loss." },
+      "Nothing formal yet": { tone:"alert", big:"Right now, your deadlines live in someone's memory.", p:"That's the highest-risk setup there is. One forgotten date and a patent is simply gone." }
+    },
+    size: {
+      "1–25": { tone:"", big:"Even a handful of patents means dozens of dates a year.", p:"Renewals, responses, filings — and it only takes one slip to lose one." },
+      "26–100": { tone:"warn", big:"That's dozens of renewal deadlines every year.", p:"More moving dates than any calendar reminder can safely hold in view." },
+      "101–500": { tone:"alert", big:"That's 100+ renewal deadlines a year.", p:"Miss just one and that patent lapses — permanently, with no way to bring it back." },
+      "500+": { tone:"alert", big:"At this scale, deadlines are a full-time operation.", p:"A single gap in the net can cost you a core patent you spent years and a fortune building." }
+    },
+    closecall: {
+      "Yes — it's happened": { tone:"alert", big:"Then you know the feeling — and that it doesn't fade.", p:"A lapsed patent can't be revived. The invention becomes free for anyone, including your competitors, to use." },
+      "A close call once or twice": { tone:"warn", big:"A near-miss is a warning shot.", p:"It was caught this time. The teams that sleep well are the ones that stopped depending on catching it." },
+      "Never, but it's a constant worry": { tone:"", big:"That worry is completely rational.", p:"The people who never miss aren't lucky — they simply stopped relying on memory and spreadsheets." },
+      "I honestly can't be sure": { tone:"warn", big:"Not knowing is its own kind of risk.", p:"If you can't see every deadline in one place, you can't be certain none has already slipped past." }
+    }
+  };
+
   var answers = {};
   var contact = { name:"", email:"", company:"" };
+  var patentsRaw = "";
   var i = 0;
   var saved = false;
   var card = document.getElementById("card");
   var qSteps = STEPS.filter(function(s){ return s.id; });
 
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
-  function progressPct(){
-    var answeredIndex = STEPS.slice(0,i).filter(function(s){return s.id;}).length;
-    return Math.round((answeredIndex/(qSteps.length+1))*100);
-  }
+  function progressPct(){ return Math.round((i/(STEPS.length-1))*100); }
   function barHTML(label){
     return '<div class="bar"><i style="width:'+progressPct()+'%"></i></div>'+
            (label?'<div class="step">'+label+'</div>':'');
@@ -160,22 +208,32 @@
   function render(){
     var s = STEPS[i];
     if(s.kind==="intro") return renderIntro();
+    if(s.kind==="insight") return renderInsight(s);
+    if(s.kind==="relief") return renderRelief();
+    if(s.kind==="patents") return renderPatents();
     if(s.kind==="capture") return renderCapture();
     if(s.kind==="done") return renderDone();
     return renderQuestion(s);
   }
+
   function renderIntro(){
     card.innerHTML =
       barHTML("") +
-      '<h1>Is your patent portfolio quietly at risk?</h1>'+
-      '<p class="lede">Answer 7 quick questions about how you manage your patents today. '+
-      'It takes about 3 minutes — all clicks.</p>'+
-      '<div class="reward"><span class="ic" aria-hidden="true">'+giftIcon()+'</span>'+
-        '<div><b>Free portfolio audit at the end</b>'+
-        '<p>Leave your email and we’ll send a free deadline-exposure snapshot for up to 20 of your patents — the risks and the quick wins.</p></div></div>'+
+      '<div class="eyebrow">Free deadline report</div>'+
+      '<h1>How exposed is your patent portfolio — really?</h1>'+
+      '<p class="lede">Take a short, honest check of how your patents are looked after today. At the end, enter your patent numbers and we’ll send you a free report of every upcoming deadline on them.</p>'+
+      '<div class="steps3">'+
+        '<div class="s"><div class="n">STEP 1</div><div class="t">3-minute check</div><div class="d">7 quick questions — all clicks.</div></div>'+
+        '<div class="s"><div class="n">STEP 2</div><div class="t">Your patent numbers</div><div class="d">US &amp; European, however many you have.</div></div>'+
+        '<div class="s"><div class="n">STEP 3</div><div class="t">Your report, emailed</div><div class="d">Reviewed by our specialists, then sent to you.</div></div>'+
+      '</div>'+
+      '<div class="reward"><span class="ic" aria-hidden="true">'+shieldIcon()+'</span>'+
+        '<div><b>Free deadline report for up to 20 patents</b>'+
+        '<p>Every renewal, response and filing date we can find — checked by a real person before it reaches your inbox.</p></div></div>'+
       '<div class="foot"><button class="btn btn-primary" id="next">Start the check →</button></div>';
     document.getElementById("next").onclick = go(1);
   }
+
   function renderQuestion(s){
     var cur = answers[s.id];
     var multi = s.type==="multi";
@@ -210,27 +268,83 @@
     } else {
       answers[s.id]=val;
       renderQuestion(s);
-      setTimeout(function(){ go(1)(); }, 220);
+      setTimeout(function(){ go(1)(); }, 240);
     }
   }
+
+  function renderInsight(s){
+    var ans = answers[s.from];
+    var key = Array.isArray(ans)?ans[0]:ans;
+    var data = (INSIGHTS[s.from]||{})[key];
+    if(!data){ i++; return render(); } // nothing to say → skip
+    var toneClass = data.tone==="alert"?"alert":data.tone==="warn"?"warn":"";
+    card.innerHTML =
+      barHTML("") +
+      '<div class="insight '+toneClass+'">'+
+        '<div class="ic" aria-hidden="true">'+(data.tone==="alert"?alertIcon():data.tone==="warn"?boltIcon():eyeIcon())+'</div>'+
+        '<p class="big">'+esc(data.big)+'</p>'+
+        '<p>'+esc(data.p)+'</p>'+
+      '</div>'+
+      '<div class="foot">'+
+        '<button class="btn btn-ghost" id="back">Back</button>'+
+        '<button class="btn btn-primary" id="next">Continue →</button>'+
+      '</div>';
+    document.getElementById("back").onclick = go(-1);
+    document.getElementById("next").onclick = go(1);
+  }
+
+  function renderRelief(){
+    card.innerHTML =
+      barHTML("") +
+      '<div class="eyebrow" style="color:var(--good)">Here’s the good news</div>'+
+      '<h1>Imagine opening one screen — and seeing every deadline, already handled.</h1>'+
+      '<p class="lede">No spreadsheet to maintain. No date to remember. Every renewal, response and filing on every patent, calculated automatically and watching itself. That’s exactly what your free report will show you first.</p>'+
+      '<div class="foot"><button class="btn btn-ghost" id="back">Back</button><button class="btn btn-primary" id="next">Build my report →</button></div>';
+    document.getElementById("back").onclick = go(-1);
+    document.getElementById("next").onclick = go(1);
+  }
+
+  function renderPatents(){
+    card.innerHTML =
+      barHTML("Your patents") +
+      '<p class="q">Which patents should we check?</p>'+
+      '<p class="hint">Enter your US or European patent / application numbers — one per line. Grant numbers or application numbers both work.</p>'+
+      '<div class="field"><textarea id="f-pat" placeholder="US10123456B2&#10;EP3456789&#10;17/485,462&#10;EP22 345 678.9">'+esc(patentsRaw)+'</textarea></div>'+
+      '<div style="font-size:12px;color:var(--muted);margin:-6px 0 4px">We’ll compute every upcoming deadline on these, up to 20 patents.</div>'+
+      '<div class="foot">'+
+        '<button class="btn btn-ghost" id="back">Back</button>'+
+        '<button class="btn btn-primary" id="next" disabled>Next →</button>'+
+      '</div>'+
+      '<button class="skip" id="skip">I’d rather share them on a call</button>';
+    var ta=document.getElementById("f-pat"), nextBtn=document.getElementById("next");
+    function val(){ patentsRaw=ta.value; nextBtn.disabled = parsePatents().length===0; }
+    ta.oninput=val; val();
+    document.getElementById("back").onclick = go(-1);
+    nextBtn.onclick = function(){ if(parsePatents().length) go(1)(); };
+    document.getElementById("skip").onclick = function(){ patentsRaw=""; go(1)(); };
+  }
+  function parsePatents(){
+    return (patentsRaw||"").split(/[\n,;]+/).map(function(x){return x.trim();}).filter(Boolean).slice(0,20);
+  }
+
   function renderCapture(){
+    var hasPat = parsePatents().length>0;
     card.innerHTML =
       barHTML("Almost done") +
-      '<p class="q">Where should we send your free audit?</p>'+
-      '<p class="hint">We’ll prepare a deadline-exposure snapshot of up to 20 of your patents.</p>'+
+      '<p class="q">Where should we send your report?</p>'+
+      '<p class="hint">'+(hasPat?"We’ll prepare your deadline report and email it after a quick review — usually within one business day.":"Leave your details and we’ll reach out to build your report with you.")+'</p>'+
       '<div class="field"><label for="f-name">Your name</label><input id="f-name" type="text" autocomplete="name" value="'+esc(contact.name)+'"></div>'+
       '<div class="field"><label for="f-email">Work email</label><input id="f-email" type="email" autocomplete="email" placeholder="you@company.com" value="'+esc(contact.email)+'"></div>'+
       '<div class="field"><label for="f-company">Company / firm <span style="color:var(--muted);font-weight:500">(optional)</span></label><input id="f-company" type="text" autocomplete="organization" value="'+esc(contact.company)+'"></div>'+
       '<div class="foot">'+
         '<button class="btn btn-ghost" id="back">Back</button>'+
-        '<button class="btn btn-primary" id="next" disabled>Get my free audit</button>'+
+        '<button class="btn btn-primary" id="next" disabled>'+(hasPat?"Send me my report":"Request my report")+'</button>'+
       '</div>';
     var nEl=document.getElementById("f-name"), eEl=document.getElementById("f-email"), cEl=document.getElementById("f-company");
     var nextBtn=document.getElementById("next");
     function validate(){
       contact.name=nEl.value.trim(); contact.email=eEl.value.trim(); contact.company=cEl.value.trim();
-      var ok = contact.name.length>1 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact.email);
-      nextBtn.disabled=!ok;
+      nextBtn.disabled = !(contact.name.length>1 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact.email));
     }
     [nEl,eEl,cEl].forEach(function(el){ el.oninput=validate; });
     validate();
@@ -243,15 +357,17 @@
     saveResponse().then(function(ok){ saved=ok; i++; render(); },
                         function(){ saved=false; i++; render(); });
   }
+
   function renderDone(){
+    var em = contact.email||"your inbox";
     card.innerHTML =
       '<div class="done">'+
         '<div class="badge">'+checkIcon()+'</div>'+
-        '<h1>Thank you'+(contact.name?", "+esc(contact.name.split(" ")[0]):"")+'.</h1>'+
-        '<p>Your free portfolio audit is on its way to <b>'+esc(contact.email||"your inbox")+'</b>. '+
-        'We’ll be in touch shortly.</p>'+
+        '<h1>You’re all set'+(contact.name?", "+esc(contact.name.split(" ")[0]):"")+'.</h1>'+
+        '<p>We’re preparing your free deadline report now. One of our specialists reviews every report by hand, then emails it to <b>'+esc(em)+'</b> — usually within one business day.</p>'+
+        '<p style="font-size:13.5px;color:var(--muted)">No account needed. Watch your inbox (and your spam folder, just in case).</p>'+
         '<div class="save-state'+(saved?"":" warn")+'" id="ss">'+
-          (saved?"":"We couldn’t reach our server just now — your answers are shown below so nothing is lost. Please email them to IPaxis@proton.me, or try again in a moment.")+
+          (saved?"":"We couldn’t reach our server just now — your details are shown below so nothing is lost. Please email them to IPaxis@proton.me, or try again in a moment.")+
         '</div>'+
         (saved?"":'<button class="copybtn" id="copy">Copy my answers</button>')+
       '</div>';
@@ -270,14 +386,15 @@
     catch(e){btn.textContent="Copy failed — select manually";}
   }
   function summaryText(){
-    var lines=["IP Axix — Portfolio pain check",""];
+    var lines=["IP Axix — Free deadline report request",""];
     lines.push("Name: "+contact.name); lines.push("Email: "+contact.email); lines.push("Company: "+(contact.company||"—"));
-    lines.push("");
+    lines.push("Patents: "+(parsePatents().join(", ")||"(none given)")); lines.push("");
     qSteps.forEach(function(s){
       var a=answers[s.id]; lines.push(s.q); lines.push("→ "+(Array.isArray(a)?a.join(", "):(a||"(skipped)"))); lines.push("");
     });
     return lines.join("\n");
   }
+
   function go(delta){
     return function(){
       i = Math.max(0, Math.min(STEPS.length-1, i+delta));
@@ -287,12 +404,16 @@
   }
   function saveResponse(){
     return fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","apikey":KEY},
-      body:JSON.stringify({name:contact.name,email:contact.email,company:contact.company,answers:answers,source:"pain-check"})})
+      body:JSON.stringify({name:contact.name,email:contact.email,company:contact.company,answers:answers,patents:parsePatents(),source:"pain-check"})})
       .then(function(r){return r.json();})
       .then(function(j){ return !!(j&&j.ok); })
       .catch(function(){ return false; });
   }
-  function giftIcon(){return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>';}
+
+  function shieldIcon(){return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>';}
+  function eyeIcon(){return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';}
+  function boltIcon(){return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8z"/></svg>';}
+  function alertIcon(){return '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';}
   function checkIcon(){return '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';}
 
   render();
