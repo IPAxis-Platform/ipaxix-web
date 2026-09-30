@@ -228,7 +228,7 @@
         '<div class="s"><div class="n">STEP 3</div><div class="t">Your report, emailed</div><div class="d">Reviewed by our specialists, then sent to you.</div></div>'+
       '</div>'+
       '<div class="reward"><span class="ic" aria-hidden="true">'+shieldIcon()+'</span>'+
-        '<div><b>Free deadline report for up to 20 patents</b>'+
+        '<div><b>Free deadline report for up to 5 patents</b>'+
         '<p>Every renewal, response and filing date we can find — checked by a real person before it reaches your inbox.</p></div></div>'+
       '<div class="foot"><button class="btn btn-primary" id="next">Start the check →</button></div>';
     document.getElementById("next").onclick = go(1);
@@ -310,7 +310,7 @@
       '<p class="q">Which patents should we check?</p>'+
       '<p class="hint">Enter your US or European patent / application numbers — one per line. Grant numbers or application numbers both work.</p>'+
       '<div class="field"><textarea id="f-pat" placeholder="US10123456B2&#10;EP3456789&#10;17/485,462&#10;EP22 345 678.9">'+esc(patentsRaw)+'</textarea></div>'+
-      '<div style="font-size:12px;color:var(--muted);margin:-6px 0 4px">We’ll compute every upcoming deadline on these, up to 20 patents.</div>'+
+      '<div style="font-size:12px;color:var(--muted);margin:-6px 0 4px">We’ll pull each patent’s recent prosecution history and compute every upcoming deadline — up to 5 patents.</div>'+
       '<div class="foot">'+
         '<button class="btn btn-ghost" id="back">Back</button>'+
         '<button class="btn btn-primary" id="next" disabled>Next →</button>'+
@@ -324,7 +324,7 @@
     document.getElementById("skip").onclick = function(){ patentsRaw=""; go(1)(); };
   }
   function parsePatents(){
-    return (patentsRaw||"").split(/[\n,;]+/).map(function(x){return x.trim();}).filter(Boolean).slice(0,20);
+    return (patentsRaw||"").split(/[\n,;]+/).map(function(x){return x.trim();}).filter(Boolean).slice(0,5);
   }
 
   function renderCapture(){
