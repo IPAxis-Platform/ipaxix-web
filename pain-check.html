@@ -224,7 +224,7 @@
       '<p class="lede">Take a short, honest check of how your patents are looked after today. At the end, enter your patent numbers and we’ll send you a free report of every upcoming deadline on them.</p>'+
       '<div class="steps3">'+
         '<div class="s"><div class="n">STEP 1</div><div class="t">3-minute check</div><div class="d">7 quick questions — all clicks.</div></div>'+
-        '<div class="s"><div class="n">STEP 2</div><div class="t">Your patent numbers</div><div class="d">US &amp; European, however many you have.</div></div>'+
+        '<div class="s"><div class="n">STEP 2</div><div class="t">Your patent numbers</div><div class="d">Optional — up to 5, for a free deadline report.</div></div>'+
         '<div class="s"><div class="n">STEP 3</div><div class="t">Your report, emailed</div><div class="d">Reviewed by our specialists, then sent to you.</div></div>'+
       '</div>'+
       '<div class="reward"><span class="ic" aria-hidden="true">'+shieldIcon()+'</span>'+
@@ -306,22 +306,20 @@
 
   function renderPatents(){
     card.innerHTML =
-      barHTML("Your patents") +
-      '<p class="q">Which patents should we check?</p>'+
-      '<p class="hint">Enter your US or European patent / application numbers — one per line. Grant numbers or application numbers both work.</p>'+
+      barHTML("Optional — free report") +
+      '<p class="q">Want a free deadline report?</p>'+
+      '<p class="hint">Optional. Add up to 5 US or European patent / application numbers (one per line) and we’ll email you a report of every upcoming deadline on them. Prefer to just talk it through? Leave it blank and skip.</p>'+
       '<div class="field"><textarea id="f-pat" placeholder="US10123456B2&#10;EP3456789&#10;17/485,462&#10;EP22 345 678.9">'+esc(patentsRaw)+'</textarea></div>'+
-      '<div style="font-size:12px;color:var(--muted);margin:-6px 0 4px">We’ll pull each patent’s recent prosecution history and compute every upcoming deadline — up to 5 patents.</div>'+
+      '<div style="font-size:12px;color:var(--muted);margin:-6px 0 4px">We pull each patent’s recent prosecution history and compute every upcoming deadline.</div>'+
       '<div class="foot">'+
         '<button class="btn btn-ghost" id="back">Back</button>'+
-        '<button class="btn btn-primary" id="next" disabled>Next →</button>'+
-      '</div>'+
-      '<button class="skip" id="skip">I’d rather share them on a call</button>';
+        '<button class="btn btn-primary" id="next">Next →</button>'+
+      '</div>';
     var ta=document.getElementById("f-pat"), nextBtn=document.getElementById("next");
-    function val(){ patentsRaw=ta.value; nextBtn.disabled = parsePatents().length===0; }
+    function val(){ patentsRaw=ta.value; nextBtn.textContent = parsePatents().length? "Next →" : "Skip for now →"; }
     ta.oninput=val; val();
     document.getElementById("back").onclick = go(-1);
-    nextBtn.onclick = function(){ if(parsePatents().length) go(1)(); };
-    document.getElementById("skip").onclick = function(){ patentsRaw=""; go(1)(); };
+    nextBtn.onclick = function(){ go(1)(); };
   }
   function parsePatents(){
     return (patentsRaw||"").split(/[\n,;]+/).map(function(x){return x.trim();}).filter(Boolean).slice(0,5);
@@ -360,12 +358,15 @@
 
   function renderDone(){
     var em = contact.email||"your inbox";
+    var hasPat = parsePatents().length>0;
     card.innerHTML =
       '<div class="done">'+
         '<div class="badge">'+checkIcon()+'</div>'+
         '<h1>You’re all set'+(contact.name?", "+esc(contact.name.split(" ")[0]):"")+'.</h1>'+
-        '<p>We’re preparing your free deadline report now. One of our specialists reviews every report by hand, then emails it to <b>'+esc(em)+'</b> — usually within one business day.</p>'+
-        '<p style="font-size:13.5px;color:var(--muted)">No account needed. Watch your inbox (and your spam folder, just in case).</p>'+
+        '<p>'+(hasPat
+          ? 'We’re preparing your free deadline report now. One of our specialists reviews every report by hand, then emails it to <b>'+esc(em)+'</b> — usually within one business day.'
+          : 'Thanks — we’ve got your answers. We’ll be in touch shortly to talk through your situation and set up a demo whenever you’re ready.')+'</p>'+
+        (hasPat?'<p style="font-size:13.5px;color:var(--muted)">No account needed. Watch your inbox (and your spam folder, just in case).</p>':'')+
         '<div class="save-state'+(saved?"":" warn")+'" id="ss">'+
           (saved?"":"We couldn’t reach our server just now — your details are shown below so nothing is lost. Please email them to IPaxis@proton.me, or try again in a moment.")+
         '</div>'+
