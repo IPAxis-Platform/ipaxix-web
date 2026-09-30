@@ -474,6 +474,54 @@
   </div>
 </div></section>
 
+<!-- ===== STAY AHEAD (newsletter + refer) ===== -->
+<section class="sec" style="background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)"><div class="in">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px">
+    <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px">
+      <span class="eyebrow">Deadline tips</span>
+      <h3 style="font-family:Fraunces,Georgia,serif;font-weight:600;font-size:22px;color:#0e1f2e;margin:8px 0 6px">Stay a step ahead of the rules</h3>
+      <p style="font-size:14px;color:#5b6a7e;line-height:1.6;margin:0 0 16px">A short, occasional email on patent deadlines, renewal fees and office-action tactics — US &amp; European. No spam; unsubscribe anytime.</p>
+      <form id="nlForm" style="display:flex;gap:8px;flex-wrap:wrap">
+        <input id="nlEmail" type="email" autocomplete="email" placeholder="Work email" style="flex:1 1 180px;min-width:160px;border:1px solid #dbd6c9;border-radius:10px;padding:11px 12px;font:inherit;font-size:14px;background:#faf9f5;color:#0e1f2e">
+        <button type="submit" style="border:none;cursor:pointer;background:#0c1c2e;color:#fff;font-weight:800;font-size:14px;padding:11px 18px;border-radius:10px">Subscribe</button>
+      </form>
+      <div id="nlStatus" style="font-size:12px;margin-top:8px;color:#5a6b80"></div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px 24px">
+      <span class="eyebrow">Spread the word</span>
+      <h3 style="font-family:Fraunces,Georgia,serif;font-weight:600;font-size:22px;color:#0e1f2e;margin:8px 0 6px">Know a team drowning in deadlines?</h3>
+      <p style="font-size:14px;color:#5b6a7e;line-height:1.6;margin:0 0 16px">Send a colleague or firm a link — they can put their own portfolio on the board free, in minutes.</p>
+      <button id="refCopy" style="border:1px solid #0c1c2e;cursor:pointer;background:transparent;color:#0c1c2e;font-weight:800;font-size:14px;padding:11px 18px;border-radius:10px">Copy a shareable message</button>
+      <div id="refStatus" style="font-size:12px;margin-top:8px;color:#5a6b80"></div>
+    </div>
+  </div>
+</div></section>
+<script>
+(function(){
+  var KEY="sb_publishable_dQBbAXx5l_buD3m-HQieTA_UBQA125h";
+  var NL="https://ooanilhblskuaasxyimw.supabase.co/functions/v1/newsletter-signup";
+  var f=document.getElementById("nlForm");
+  if(f) f.addEventListener("submit",function(e){ e.preventDefault();
+    var em=(document.getElementById("nlEmail").value||"").trim(), st=document.getElementById("nlStatus");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){ st.style.color="#B00020"; st.textContent="Please enter a valid email address."; return; }
+    var btn=f.querySelector("button"); btn.disabled=true; st.style.color="#5a6b80"; st.textContent="Subscribing…";
+    fetch(NL,{method:"POST",headers:{"Content-Type":"application/json","apikey":KEY},body:JSON.stringify({email:em,source:"homepage"})})
+      .then(function(r){return r.json();}).then(function(j){
+        if(j&&j.ok){ f.parentNode.querySelector("p").style.display="none"; f.outerHTML='<div style="font-size:14px;color:#0e8f80;font-weight:700">✓ You’re in — watch your inbox.</div>'; st.textContent=""; }
+        else { btn.disabled=false; st.style.color="#B00020"; st.textContent=(j&&j.error)||"Couldn’t subscribe — please try again."; }
+      }).catch(function(){ btn.disabled=false; st.style.color="#B00020"; st.textContent="Couldn’t subscribe — please try again."; });
+  });
+  var rc=document.getElementById("refCopy");
+  if(rc) rc.addEventListener("click",function(){
+    var msg="I’ve been using IP Axix to keep every US & European patent deadline watched automatically — thought of you. You can put your own portfolio on it free in minutes: https://ipaxix.online";
+    var rs=document.getElementById("refStatus");
+    function ok(){ rc.textContent="✓ Copied — paste it anywhere"; rs.style.color="#0e8f80"; rs.textContent="Message + link copied to your clipboard."; }
+    function fb(t){ try{var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand("copy");document.body.removeChild(ta);ok();}catch(e){ rs.style.color="#0e1f2e"; rs.textContent=t; } }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(msg).then(ok,function(){fb(msg);}); } else fb(msg);
+  });
+})();
+</script>
+
 <!-- ===== CLOSE ===== -->
 <section class="sec tight"><div class="in">
   <div class="close">
